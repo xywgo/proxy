@@ -1,0 +1,27 @@
+version: "3.8"
+
+services: 
+    mariadb:
+        image: mariadb:10.2
+        container_name: mariadb
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=trojan
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_DATABASE=trojan
+
+        ports: 
+            - "3306:3306"
+        volumes: 
+            - ./config/mariadb:/var/lib/mysql
+    trojan:
+        image: jrohy/trojan
+        container_name: trojan
+        privileged: true
+        restart: always
+        stdin_open: true
+        tty: true
+        network_mode: "host"
+        command: 
+            - init
+        
