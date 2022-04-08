@@ -1,7 +1,7 @@
 version: "3.8"
 
 services: 
-    mariadb:
+    mariadb_tr:
         image: mariadb:10.2
         container_name: mariadb
         restart: always
